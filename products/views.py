@@ -8,7 +8,7 @@ def all_products(request):
 
     products = Product.objects.all()
     query = None
-    
+
     if request.GET:
         if 'q' in request.GET:
             query = request.GET['q']
@@ -18,7 +18,7 @@ def all_products(request):
             
             queries = Q(name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
-                
+
     
     context = {
         'products': products,
