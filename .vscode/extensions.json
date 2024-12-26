@@ -25,6 +25,7 @@
 		"ms-toolsai.vscode-jupyter-slideshow",
 		"redhat.vscode-yaml",
 		"vivaxy.vscode-conventional-commits",
+		"numso.prettier-standard-vscode"
 	],
 	// List of extensions recommended by VS Code that should not be recommended for users of this workspace.
 	"unwantedRecommendations": [
