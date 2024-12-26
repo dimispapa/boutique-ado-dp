@@ -1,0 +1,6 @@
+{
+    "extensions.autoUpdate": true,
+    "extensions.autoCheckUpdates": true,
+    "extensions.autoInstallRecommended": true,
+    "security.workspace.trust.enabled": true
+}
