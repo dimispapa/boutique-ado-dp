@@ -2,21 +2,21 @@ image:
   file: .gitpod.dockerfile
 
 tasks:
-  - init: . ${GITPOD_REPO_ROOT}/.vscode/init_tasks.sh
-    command: /home/gitpod/.pg_ctl/bin/pg_start > /dev/null
+  - init: |
+      . ${GITPOD_REPO_ROOT}/.vscode/init_tasks.sh
 
-  # Install Stripe CLI during workspace initialization
-  - before: |
       curl -L -o stripe.tar.gz https://github.com/stripe/stripe-cli/releases/download/v1.23.3/stripe_1.23.3_linux_x86_64.tar.gz
       tar -xvzf stripe.tar.gz
       sudo mv stripe /usr/local/bin/
       stripe version
-    command: echo "Stripe CLI installed and ready"
 
-  - command: . ${GITPOD_REPO_ROOT}/.vscode/uptime.sh &
+    command: |
+      /home/gitpod/.pg_ctl/bin/pg_start > /dev/null
+
+      . ${GITPOD_REPO_ROOT}/.vscode/uptime.sh &
 
 vscode:
-  extensions: 
+  extensions:
     - esbenp.prettier-vscode
     - eventyret.bootstrap-4-cdn-snippet
     - formulahendry.auto-close-tag
