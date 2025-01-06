@@ -41,6 +41,15 @@ ENV PATH=$PYTHONUSERBASE/bin:$PATH
 # Setup Heroku CLI
 RUN curl https://cli-assets.heroku.com/install.sh | sh
 
+# Setup Stripe CLI
+RUN curl -L -o stripe.tar.gz https://github.com/stripe/stripe-cli/releases/download/v1.23.3/stripe_1.23.3_linux_x86_64.tar.gz \
+    && tar -xvzf stripe.tar.gz \
+    && sudo mv stripe /usr/local/bin/ \
+    && rm stripe.tar.gz
+
+# Verify Stripe CLI installation
+RUN stripe version
+
 # Setup MongoDB (6.0 from Jammy repos)
 RUN wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb && sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb && \
     sudo apt-get install gnupg && \
