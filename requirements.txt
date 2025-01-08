@@ -1,3 +1,4 @@
+setuptools>=70.0.0
 asgiref==3.8.1
 boto3==1.35.94
 botocore==1.35.94
@@ -6,7 +7,7 @@ colorama==0.4.6
 cssbeautifier==1.15.1
 dj-database-url==0.5.0
 Django==3.2.25
-django-allauth==0.41.0
+django-allauth>=0.50.0
 django-countries==7.2.1
 django-crispy-forms==1.14.0
 django-storages==1.14.4
