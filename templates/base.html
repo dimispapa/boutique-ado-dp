@@ -38,6 +38,7 @@
 
     <title>
       Boutique Ado{% block extra_title %}
+
       {% endblock %}
     </title>
   </head>
@@ -71,7 +72,7 @@
               <div class="dropdown-menu border-0" aria-labelledby="user-options">
                 {% if request.user.is_authenticated %}
                   {% if request.user.is_superuser %}
-                    <a href="" class="dropdown-item">Product Management</a>
+                    <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
                   {% endif %}
                   <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
                   <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
@@ -83,9 +84,21 @@
             </li>
             <li class="list-inline-item">
               <a class="{% if grand_total %}
+                  
+                  
+                  
                   text-info font-weight-bold
+
+
+
                 {% else %}
+                  
+                  
+                  
                   text-black
+
+
+
                 {% endif %} nav-link"
                 href="{% url 'view_bag' %}">
                 <div class="text-center">
