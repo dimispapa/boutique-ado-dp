@@ -35,8 +35,8 @@ DEBUG = True if ENVIRONMENT == 'DEV' else False
 
 ALLOWED_HOSTS = ["localhost",
                  os.environ.get("NGRO_TUNNEL"),
-                 "https://boutique-ado-dp-d9499616d598.herokuapp.com/",
-                 ".herokuapp.con"]
+                 "boutique-ado-dp-d9499616d598.herokuapp.com",
+                 ".herokuapp.com"]
 
 # Application definition
 
