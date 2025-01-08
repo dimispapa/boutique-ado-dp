@@ -70,8 +70,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-if ENVIRONMENT == 'PROD':
-    MIDDLEWARE.append("allauth.account.middleware.AccountMiddleware")
+# if ENVIRONMENT == 'PROD':
+#     MIDDLEWARE.append("allauth.account.middleware.AccountMiddleware")
 
 ROOT_URLCONF = "boutique_ado.urls"
 
