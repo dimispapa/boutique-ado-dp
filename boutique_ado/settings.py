@@ -28,7 +28,7 @@ HEROKU_API_KEY = os.environ.get('HEROKU_API_KEY')
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DEV_SECRET_KEY')
+SECRET_KEY = "django-insecure-k35x8lv^!9$mavd2b!-@h1$er3ee!hq+@y7uk6-a%aen)@$9id"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True if ENVIRONMENT == 'DEV' else False
