@@ -11,26 +11,31 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import dj_database_url
 import os
-if os.path.isfile('env.py'):
+
+if os.path.isfile("env.py"):
     import env
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# Get the environment and heroku api key
+ENVIRONMENT = os.environ.get('DJANGO_ENV', 'DEV')  # Default to 'DEV'
+HEROKU_API_KEY = os.environ.get('HEROKU_API_KEY')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-k35x8lv^!9$mavd2b!-@h1$er3ee!hq+@y7uk6-a%aen)@$9id"
+SECRET_KEY = os.environ.get('DEV_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = True if ENVIRONMENT == 'DEV' else False
 
 ALLOWED_HOSTS = ["localhost",
-                 "a933-46-190-82-17.ngrok-free.app"]
-
+                 os.environ.get("NGRO_TUNNEL"),
+                 "https://boutique-ado-dp-d9499616d598.herokuapp.com/"]
 
 # Application definition
 
@@ -45,7 +50,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    'crispy_forms',
+    "crispy_forms",
     "home",
     "products",
     "bag",
@@ -65,7 +70,7 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = "boutique_ado.urls"
 
-CRISPY_TEMPLATE_PACK = 'bootstrap4'
+CRISPY_TEMPLATE_PACK = "bootstrap4"
 
 TEMPLATES = [
     {
@@ -118,12 +123,16 @@ WSGI_APPLICATION = "boutique_ado.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+if ENVIRONMENT == 'PROD':
+    DATABASES = {"default": dj_database_url.parse(os.environ.get("DATABASE_URL"))}
+
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": BASE_DIR / "db.sqlite3",
+        }
     }
-}
 
 
 # Password validation
@@ -176,8 +185,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 # Stripe
 FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PERCENTAGE = 10
-STRIPE_CURRENCY = 'usd'
+STRIPE_CURRENCY = "usd"
 STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_PUBLIC_KEY")
 STRIPE_SECRET_KEY = os.environ.get("STRIPE_SECRET_KEY")
 STRIPE_WH_SECRET = os.environ.get("STRIPE_WH_SECRET")
-DEFAULT_FROM_EMAIL = 'boutiqueado@example.com'
+DEFAULT_FROM_EMAIL = "boutiqueado@example.com"
